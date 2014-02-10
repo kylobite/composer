@@ -11,7 +11,7 @@ ruby:test.rb[1,1]
 
 The syntax for this file is:
 
-<u>compiler</u>:<u>script</u>[<u>sendInput</u>,<u>sendOutput</u>]
+compiler:script[sendInput,sendOutput]
 
 ---
 

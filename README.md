@@ -11,7 +11,9 @@ ruby:test.rb[1,1]
 
 The syntax for this file is:
 
-compiler:script[sendInput,sendOutput]
+<u>compiler</u>:<u>script</u>[<u>sendInput</u>,<u>sendOutput</u>]
+
+---
 
 The ordering of the configuration is the order you want to files to execute.
 

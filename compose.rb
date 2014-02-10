@@ -61,9 +61,12 @@ def execute list
 
     list.reverse!
     num = list.size - 1
+    cache = nil
 
     (0..num).each do |i|
-        cache = list[i].call
-        puts cache if i == num
+        temp = list[i].call
+        cache = temp if i == num
     end
+
+    return cache
 end

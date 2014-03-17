@@ -5,8 +5,10 @@ def compose dst, data=nil, output = true
 
     value = nil
 
+    pass = data.nil? ? nil : data.call
+
     IO.popen(dst, "r+") do |pipe|
-        pipe.puts(data) unless data.nil?
+        pipe.puts(pass) unless pass.nil?
         pipe.close_write
         value = pipe.read
     end
@@ -21,7 +23,7 @@ def parse file
     content = File.open("#{dir}/#{file}") {|f| f.read}
     lines   = content.split("\n")
     order   = lines.map do |x| 
-        x.scan(/(.*):(.*)\[(\d),(\d)\]/).flatten
+        x.scan(/(.*):(.*)\[(\d),.*(\d)\]/).flatten
     end
 
     cmd, file, data, output = [[],[],[],[]]
@@ -59,7 +61,6 @@ end
 def execute list
     return nil if list.empty?
 
-    list.reverse!
     num = list.size - 1
     cache = nil
 
@@ -69,4 +70,8 @@ def execute list
     end
 
     return cache
+end
+
+def run dst
+    execute(assign(parse(dst)))
 end
